@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Welcome</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome <%= user?.name %></h1>
+      <h2><%= message %></h2>
+      <form action="/pin/" method="POST" class="form">
+        <input type="text" placeholder="picture name" name="name" />
+        <input
+          type="text"
+          placeholder="a little bit about the pic"
+          name="about"
+        />
+        <input type="date" placeholder="" name="date" />
+        <button type="submit">Submit</button>
+      </form>
+      <form action="/pin/" method="GET">
+        <h1>Get All Pins</h1>
+        <button type="submit">Get Pins</button>
+      </form>
+      <form
+        class="form"
+        action=""
+        method="GET"
+        onsubmit="sendForm()"
+        id="searchForm"
+      >
+        <input type="text" name="term" />
+        <button type="submit">Search</button>
+      </form>
+    </div>
+    <script>
+      const sendForm = () => {
+        const form = document.querySelector("#searchForm");
+        const param = form.elements.term.value;
+        form.action = `/pin/search?term=${param}`;
+      };
+    </script>
+  </body>
+</html>
